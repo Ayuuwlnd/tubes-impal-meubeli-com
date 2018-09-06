@@ -1,0 +1,58 @@
+CREATE TABLE Meubel (
+    id_meubel char(10) NOT NULL,
+    kategori_meubel varchar(25),
+    jenis_meubel varchar(25),
+    harga int(8)
+);
+
+CREATE TABLE User (
+    id_user char(10) NOT NULL,
+    username varchar(10),
+    password varchar(20),
+    nama varchar(50),
+    no_hp varchar(13),
+    status varchar(10)
+);
+
+CREATE TABLE Supplier (
+    id_supplier char(10) NOT NULL,
+    nama_supplier varchar(50),
+    kontak_supplier varchar(13),
+    alamat_supplier varchar(100)
+);
+
+CREATE TABLE Sparepart (
+    id_sparepart char(12) NOT NULL,
+    nama_sparepart varchar(50),
+    harga_sparepart int(7)
+);
+
+CREATE TABLE Cicilan (
+    id_transaksi char(12) NOT NULL,
+    cicilan int(15)
+);
+
+CREATE TABLE Transaksi (
+    id_transaksi char(12) NOT NULL,
+    tgl_transaksi Date,
+    jenis_pembayaran varchar(8),
+    status_transaksi varchar(8),
+    jumlah_cicilan int(3)
+);
+
+
+
+ALTER TABLE Meubel ADD CONSTRAINT PK_Meubel PRIMARY KEY (id_meubel);
+
+ALTER TABLE User ADD CONSTRAINT PK_User PRIMARY KEY (id_user);
+
+ALTER TABLE Supplier ADD CONSTRAINT PK_Supplier PRIMARY KEY (id_supplier);
+
+ALTER TABLE Sparepart ADD CONSTRAINT PK_Sparepart PRIMARY KEY (id_sparepart);
+
+ALTER TABLE Cicilan ADD CONSTRAINT PK_Cicilan PRIMARY KEY (id_transaksi);
+
+ALTER TABLE Transaksi ADD CONSTRAINT PK_Transaksi PRIMARY KEY (id_transaksi);
+
+
+ALTER TABLE Cicilan ADD CONSTRAINT FK_Cicilan_Transaksi FOREIGN KEY (id_transaksi) REFERENCES Transaksi(id_transaksi);
